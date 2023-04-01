@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Sukiya.Models.LoaiMon>
+<h1>Chủ đề</h1>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(item.TenLoaiMon, "GetFoodByCategory/" + item.MaLoaiMon, "Mons") </li>
+    }
+</ul>
+

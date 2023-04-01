@@ -1,0 +1,44 @@
+﻿@model PagedList.IPagedList<Sukiya.Models.Mon>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<p>
+    @using (Html.BeginForm("Search", "Mons", FormMethod.Get))
+
+    {
+        <input type="text" name="searchString" placeholder="Tìm kiếm Mon" />
+        <input type="submit" value="Tìm Kiếm" />
+    }
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    <strong>@item.TenMon</strong>
+                    <div class="pull-right">
+                    </div>
+                </div>
+                <div class="panel-body">
+
+                    <p><strong>Thể loại: </strong>@item.LoaiMon.TenLoaiMon</p>
+                    <img src="@item.HinhAnh" style="width:200px; height:250px" />
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        @Html.ActionLink("Chi tiết", "Details", "Mons", new { id = item.MaMon }, new
+                        {
+                        @class = "btn btn-default"
+                        })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+

@@ -1,0 +1,96 @@
+﻿
+@model PagedList.IPagedList<Sukiya.Models.Mon>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    @using (Html.BeginForm("Search", "Mons", FormMethod.Get))
+
+    {
+        <input type="text" name="searchString" placeholder="Tìm kiếm Mon" />
+        <input type="submit" value="Tìm Kiếm" />
+    }
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            Loai Mon
+        </th>
+        <th>
+            Ten Mon
+        </th>
+        <th>
+            Gia
+        </th>
+        <th>
+            Mo Ta
+        </th>
+        <th>
+            Hinh Anh
+        </th>
+        <th></th>
+    </tr>*@
+
+    @*@foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiMon.TenLoaiMon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenMon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                <img src="@item.HinhAnh" style="width:200px; height:250px" />
+                @Html.DisplayFor(modelItem => item.HinhAnh)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.MaMon }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaMon })
+                |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.MaMon })
+            </td>
+        </tr>
+    }*@
+
+@*</table>*@
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    <strong>@item.TenMon</strong>
+                    <div class="pull-right">
+                    </div>
+                </div>
+                <div class="panel-body">
+
+                    <p><strong>Thể loại: </strong>@item.LoaiMon.TenLoaiMon</p>
+                    <img src="@item.HinhAnh" style="width:200px; height:250px" />
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        @Html.ActionLink("Chi tiết", "Details", "Mons", new { id = item.MaMon }, new
+                        {
+                        @class = "btn btn-default"
+                        })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Sukiya.Models.Mon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiMon.TenLoaiMon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenMon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiMon.TenLoaiMon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenMon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                <img src="@item.HinhAnh" style="width:200px; height:250px" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaMon }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaMon }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaMon })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
