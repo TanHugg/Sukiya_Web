@@ -39,7 +39,7 @@ namespace Sukiya.Controllers
                 dem = dem + tam;
             }
             string amount = Convert.ToString(dem);
-            string orderid = DateTime.Now.Ticks.ToString(); //mã đơn hàng
+            string orderid = DateTime.Now.Ticks.ToString(); //mã đơn hàngggggg
             string requestId = DateTime.Now.Ticks.ToString();
             string extraData = "";
 
